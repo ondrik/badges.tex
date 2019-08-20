@@ -1,10 +1,20 @@
 \documentclass{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{graphicx}
 \usepackage{anyfontsize,csvsimple,ifthen,tikz,xcolor}
 \usetikzlibrary{calc}
 \newif\ifDraftMode\DraftModefalse
 \newif\ifMirroredPage\MirroredPagefalse
+
+% Set the name of the event
+\newcommand{\eventname}[0]{AVM 2019}
+
+% logos
+\newcommand{\logoleft}[0]{\hspace*{8mm}\includegraphics[width=2.8cm,keepaspectratio]{FIT_short_color_RGB_EN.png}}
+\newcommand{\logoright}[0]{\hspace*{-6mm}\includegraphics[width=1.8cm,keepaspectratio]{inf-lg-cze-rgb-cropped.png}}
+\newcommand{\logoevent}[0]{\includegraphics[width=1.4cm,keepaspectratio]{avm-logo-color.pdf}}
+
 
 % Comment out the following line for the final print.  Disabling draft
 % mode enables overprinting to avoid white margins after cropping the
@@ -17,8 +27,8 @@
 
 % You may change the following two values (within reason).  Everything
 % else will be recomputed automatically.
-\newcommand{\BadgeWidth}{9cm}
-\newcommand{\BadgeHeight}{5.9cm}
+\newcommand{\BadgeWidth}{8.7cm}
+\newcommand{\BadgeHeight}{5.5cm}
 
 % Distance between badges.  You probably do not need to change this.
 \newcommand{\BadgeSepX}{0.6cm}
@@ -93,9 +103,11 @@
       (-\Fudge, \BadgeHeight - 0.9cm) rectangle (\BadgeWidth + \Fudge, \BadgeHeight + \Fudge);
 
     \node at (\BadgeWidth / 2, \BadgeHeight - 0.45cm) {
-      \textbf{\Large{ABC 2015}}};
-    \node at (1, \BadgeHeight - 0.45cm) {Logo};
-    \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.45cm) {Logo};
+      \textbf{\Large{\eventname}}};
+    \node at (1, \BadgeHeight - 0.45cm) {\logoleft};
+    % \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.45cm) {\logoright};
+    \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.65cm) {\logoright};
+    \node at (\BadgeWidth - 0.7cm, 1cm) {\logoevent};
 
     %% The middle part
     % Try different font sizes for the name to find the maximum
