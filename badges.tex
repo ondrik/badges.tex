@@ -11,10 +11,13 @@
 \newcommand{\eventname}[0]{AVM 2019}
 
 % logos
-\newcommand{\logoleft}[0]{\hspace*{8mm}\includegraphics[width=2.8cm,keepaspectratio]{FIT_short_color_RGB_EN.png}}
+% \newcommand{\logoleft}[0]{\hspace*{8mm}\includegraphics[width=2.8cm,keepaspectratio]{FIT_short_color_RGB_EN.png}}
+\newcommand{\logoleft}[0]{\hspace*{2mm}\includegraphics[width=2.8cm,keepaspectratio]{FIT_abbreviation_color_PANTONE_EN.pdf}}
 \newcommand{\logoright}[0]{\hspace*{-6mm}\includegraphics[width=1.8cm,keepaspectratio]{inf-lg-cze-rgb-cropped.png}}
-\newcommand{\logoevent}[0]{\includegraphics[width=1.4cm,keepaspectratio]{avm-logo-color.pdf}}
+\newcommand{\logoevent}[0]{\includegraphics[width=1.5cm,keepaspectratio]{avm-logo-color.pdf}}
 
+% the input file with the participants
+\newcommand{\inputfile}[0]{participants1.csv}
 
 % Comment out the following line for the final print.  Disabling draft
 % mode enables overprinting to avoid white margins after cropping the
@@ -99,7 +102,7 @@
     % is the place.
 
     %% The headline
-    \draw [fill=black!5,draw=none]
+    \draw [fill=black!0,draw=none]
       (-\Fudge, \BadgeHeight - 0.9cm) rectangle (\BadgeWidth + \Fudge, \BadgeHeight + \Fudge);
 
     \node at (\BadgeWidth / 2, \BadgeHeight - 0.45cm) {
@@ -107,7 +110,7 @@
     \node at (1, \BadgeHeight - 0.45cm) {\logoleft};
     % \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.45cm) {\logoright};
     \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.65cm) {\logoright};
-    \node at (\BadgeWidth - 0.7cm, 1cm) {\logoevent};
+    \node at (\BadgeWidth - 0.8cm, 0.8cm) {\logoevent};
 
     %% The middle part
     % Try different font sizes for the name to find the maximum
@@ -132,7 +135,7 @@
         {\textbf{\fontsize{18}{18}\selectfont{\firstname~\lastname}}};
     }}}}}}}}}}}}}}}}
 
-    \node [anchor=base] at (\BadgeWidth / 2, 2.2) {\Large{\affiliation}};
+    \node [anchor=north] at (\BadgeWidth / 2, 2.7) {\Large{\begin{tabular}{c}\affiliation\end{tabular}}};
 
     %% The bottom line
     \ifthenelse{\equal{\eventA}{}}{}{\attendsEventA}
@@ -140,7 +143,7 @@
     \ifthenelse{\equal{\eventC}{}}{}{\attendsEventC}
     \ifthenelse{\equal{\eventD}{}}{}{\attendsEventD}
     % Draw a fine gray line above the event markers.
-    \draw [draw=black!30] (-\Fudge, 0.5) -- (\BadgeWidth + \Fudge, 0.5);
+    \draw [draw=black!0] (-\Fudge, 0.5) -- (\BadgeWidth + \Fudge, 0.5);
 
     %% A frame
     % Draw a frame around the badge if in draft mode.
@@ -232,7 +235,7 @@
   \def\i{0}
   % The number of badges already printed on this page plus 1.
   \def\onthispagesofar{1}
-  \csvreader{participants.csv}{%
+  \csvreader{\inputfile}{%
     1=\affiliation,4=\firstname,5=\lastname,
     6=\eventA,7=\eventB,8=\eventC,9=\eventD}%
   {
