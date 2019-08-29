@@ -3,18 +3,19 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{anyfontsize,csvsimple,ifthen,tikz,xcolor}
+\usepackage{palatino}
 \usetikzlibrary{calc}
 \newif\ifDraftMode\DraftModefalse
 \newif\ifMirroredPage\MirroredPagefalse
 
 % Set the name of the event
-\newcommand{\eventname}[0]{AVM 2019}
+\newcommand{\eventname}[0]{AVM'19~~$\bullet$~~Brno, Czech Republic~~$\bullet$~~9--11 September 2019}
 
 % logos
 % \newcommand{\logoleft}[0]{\hspace*{8mm}\includegraphics[width=2.8cm,keepaspectratio]{FIT_short_color_RGB_EN.png}}
-\newcommand{\logoleft}[0]{\hspace*{2mm}\includegraphics[width=2.8cm,keepaspectratio]{FIT_abbreviation_color_PANTONE_EN.pdf}}
-\newcommand{\logoright}[0]{\hspace*{-6mm}\includegraphics[width=1.8cm,keepaspectratio]{inf-lg-cze-rgb-cropped.png}}
-\newcommand{\logoevent}[0]{\includegraphics[width=1.5cm,keepaspectratio]{avm-logo-color.pdf}}
+\newcommand{\logofit}[0]{\hspace*{2mm}\includegraphics[width=2.8cm,keepaspectratio]{FIT_abbreviation_color_PANTONE_EN.pdf}}
+\newcommand{\logofi}[0]{\hspace*{-6mm}\includegraphics[width=1.8cm,keepaspectratio]{inf-lg-cze-rgb-cropped.png}}
+\newcommand{\logoavm}[0]{\includegraphics[width=1.7cm,keepaspectratio]{avm-logo-color.pdf}}
 
 % the input file with the participants
 \newcommand{\inputfile}[0]{participants1.csv}
@@ -37,6 +38,14 @@
 \newcommand{\BadgeSepX}{0.6cm}
 \newcommand{\BadgeSepY}{0.9cm}
 
+% vertical location of name and affiliation
+%verze s logama dole:
+% \newcommand{\ynamepos}{3.2}
+% \newcommand{\yaffilpos}{2.9}
+%verze s logama nahore:
+\newcommand{\ynamepos}{2.5}
+\newcommand{\yaffilpos}{2.2}
+  
 % The amount of overprinting (irrelevant for draft mode)
 \newcommand{\Fudge}{1.5mm}
 
@@ -74,7 +83,7 @@
 
 \newcommand{\TryNameSize}[2]{
   \begin{scope}
-    \node [anchor=mid] (try#1) at (\BadgeWidth / 2, 3.2)
+    \node [anchor=mid] (try#1) at (\BadgeWidth / 2, \ynamepos)
       {\textbf{\fontsize{#1}{#1}\selectfont{\phantom{\firstname~\lastname}}}};
     \newdimen\x
     \pgfextractx{\x}{\pgfpointanchor{try#1}{east}}
@@ -82,7 +91,7 @@
     \ifnum \TooLarge=1
       #2
     \else
-      \node [anchor=mid] at (\BadgeWidth / 2, 3.2)
+      \node [anchor=mid] at (\BadgeWidth / 2, \ynamepos)
         {\textbf{\fontsize{#1}{#1}\selectfont\firstname~\lastname}};
     \fi
   \end{scope}
@@ -105,12 +114,17 @@
     \draw [fill=black!0,draw=none]
       (-\Fudge, \BadgeHeight - 0.9cm) rectangle (\BadgeWidth + \Fudge, \BadgeHeight + \Fudge);
 
-    \node at (\BadgeWidth / 2, \BadgeHeight - 0.45cm) {
-      \textbf{\Large{\eventname}}};
-    \node at (1, \BadgeHeight - 0.45cm) {\logoleft};
-    % \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.45cm) {\logoright};
-    \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.65cm) {\logoright};
-    \node at (\BadgeWidth - 0.8cm, 0.8cm) {\logoevent};
+    % verze s logama dole
+    % \node at (\BadgeWidth / 2, \BadgeHeight - 0.3cm) {\footnotesize{\eventname}};
+    % \node at (.95cm, 0.75cm) {\logoavm};
+    % \node at (\BadgeWidth / 2 -.1cm, 0.65cm) {\logofit};
+    % \node at (\BadgeWidth - 0.7cm, 0.65cm) {\logofi};
+      
+    % verze s logama nahore 
+    \node at (\BadgeWidth / 2, 0.3cm) {\footnotesize{\eventname}};
+    \node at (.95cm, \BadgeHeight - 0.75cm) {\logoavm};
+    \node at (\BadgeWidth / 2 -.1cm, \BadgeHeight - 0.65cm) {\logofit};
+    \node at (\BadgeWidth - 0.7cm, \BadgeHeight - 0.65cm) {\logofi};
 
     %% The middle part
     % Try different font sizes for the name to find the maximum
@@ -131,11 +145,11 @@
     \TryNameSize{21}{
     \TryNameSize{20}{
     \TryNameSize{19}{
-      \node [anchor=mid] at (\BadgeWidth / 2, 3.2)
+      \node [anchor=mid] at (\BadgeWidth / 2, \ynamepos)
         {\textbf{\fontsize{18}{18}\selectfont{\firstname~\lastname}}};
     }}}}}}}}}}}}}}}}
 
-    \node [anchor=north] at (\BadgeWidth / 2, 2.7) {\Large{\begin{tabular}{c}\affiliation\end{tabular}}};
+    \node [anchor=north] at (\BadgeWidth / 2, \yaffilpos) {\Large{\begin{tabular}{c}\affiliation\end{tabular}}};
 
     %% The bottom line
     \ifthenelse{\equal{\eventA}{}}{}{\attendsEventA}
